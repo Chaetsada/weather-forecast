@@ -5,10 +5,14 @@ import ForecastDisplay from "@/components/ForecastDisplay";
 import Header from "@/components/Header";
 import MainDisplay from "@/components/MainDisplay";
 import { Card } from "@/components/ui/card";
-import { DEFAULT_LOCATION } from "@/config";
+import { searchParamsProps } from "@/lib/type";
 
-export default async function Home() {
-  const { lat, lon } = DEFAULT_LOCATION.coord;
+interface props {
+  searchParams: searchParamsProps;
+}
+
+export default async function SearchPage({ searchParams }: props) {
+  const { lat, lon } = searchParams;
 
   let CurrentWeatherReq = await getCurrentWeather({ lat, lon });
   let ForecastWeatherReq = await getForecastWeather({ lat, lon });
